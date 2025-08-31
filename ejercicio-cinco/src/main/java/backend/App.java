@@ -11,9 +11,16 @@ import lombok.val;
  * Hello world!
  */
 public class App {
+
+    // Declare a el vector clientes para asi poder utilizarlo en todos los métodos y ahorrarme
+    // tener que pasarlo como un paramtero en cada método, asi que colocandolo fuera de cualquier
+    // método, puede ser accedido por cualqueir método.
+    private static Vector<Cliente> vectorCliente = new Vector<>();
+    
+    
     public static void main(String[] args) {
         System.out.println("HOLA MUNDO!!");
-
+        
         
         try {
             File file = new File("C:\\Users\\agusn\\proyecto-bkd-2025\\ejercicio-cinco\\clientes.csv");
@@ -24,7 +31,6 @@ public class App {
                 scanner.nextLine();
             }
             
-            Vector<Cliente> vectorCliente = new Vector<>();
             
     // Acá dice "Mientras haya una lina, segui. Cuando no haya mas, pará"
             while (scanner.hasNextLine()) {
@@ -62,18 +68,70 @@ public class App {
             
             scanner.close();
 
-            for (int i=0; i<10; i++){
-                
+            Scanner scan = new Scanner(System.in);
+
+            // Mostrar los 10 primeros clientes cargados con exito
+            for (int i=0; i < 10; i++){
+                Cliente c = vectorCliente.get(i);
+                System.out.println("\n-----------------------------------------------");
+                System.out.println("Nombre: " + c.getNombre());
+                System.out.println("DNI: " + c.getDni());
+                System.out.println("Edad: " + c.getEdad() + "Años");
+                System.out.println("Ocupacion: " + c.getOcupacion());
+                System.out.println("Cantidad de Posteos: " + c.getCantidadPosteos());
+                System.out.println("Horas en la Plataforma: " + c.getHorasEnPlataforma());
+                System.out.println("-----------------------------------------------\n");
+
             }
             
+            // Llamada a los métodos descriptos mas abajo en el codigo
+            System.out.println("\n\n >>> Cantidad de clientes mayores a");
+            System.out.print("Ingrese la edad: ");
+            int age = scan.nextInt();
+            contarMayorDe(age);
+
+            System.out.println("\n\n >>> Cantidad total de posteos");
+            totalPosts();
+
+            System.out.println("\n\n >>> Puntuacion Total de los clientes");
+            puntuacionTotalClientes();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        
-        
-        // Cliente cliente = new Cliente("Juan Perez", "12345678A", (short) 30, 5, 12.5f, true);
-        // System.out.println(cliente);
 
+    }
+
+    // Métodos
+    // Este método hace uso de clacularPuntuacion para asi recorrer el vector de clientes y sumar
+    // todas las puntuaciones y albergarlas en la variable 'suma'.
+    public static void puntuacionTotalClientes(){
+        float totalPts = 0;
+        for (Cliente c :vectorCliente){
+            totalPts += c.calcularPuntuacion();
+        }
+        System.out.println("El puntaje total de todos los Clientes es: " + totalPts);
+    }
+
+    // Este método recorre todo el vector clientes y asi puede sumar la cantidad de posteos
+    public static void totalPosts(){
+        int suma = 0;
+        for (Cliente c : vectorCliente){
+            suma += c.getCantidadPosteos();
+        }
+        System.out.println("La cantidad total de posteos es de: " + suma);
+    }
+
+    // Acá utilize otro modo para recorrer el vector, algo mas complejo y menos intuitivo que los
+    // anteriores, pero basicamnte hace lo mimso.
+    public static void contarMayorDe(int edad){
+        int count = 0;
+        for (int i=0; i<vectorCliente.size(); i++){
+            Cliente c = vectorCliente.get(i);
+            if (c.getEdad() > edad)
+                count += 1;
+        }
+
+        System.out.println("La cantidad de Clientes mayores de " + edad + " es de: " + count);
     }
 }
