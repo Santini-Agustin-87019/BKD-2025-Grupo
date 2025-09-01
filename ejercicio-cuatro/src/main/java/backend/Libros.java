@@ -11,7 +11,16 @@ public class Libros {
     private String isbn;
     private String titulo;
     private int nroEstante;
-    private int paguina;
+    private int pagina;
     private double precioPorDia;
-    private String autor;
+    private Autor autor;
+
+    @Override
+    public String toString() {
+        return  "Titulo: " + this.titulo + "\n" +
+                "Autor - Nombre: " + this.autor.getNombre() + "\n" +
+                "Autor - Apellido: " + this.autor.getApellido() + "\n" +
+                "Estante: " + this.nroEstante;
+
+    }
 }
