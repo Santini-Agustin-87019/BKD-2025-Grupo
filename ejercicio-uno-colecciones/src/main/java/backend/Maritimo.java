@@ -16,7 +16,13 @@ public class Maritimo extends Viaje {
     private double costoPorKilo;
     private double precioTransportado;
    
-   
+    // Metodos
+    
+    public double costoTotalDeUnViaje(){
+        return this.costoPorKilo * this.precioTransportado;
+    }
+
+
     @Override
     public int compareTo(Object o) {
         // TODO Auto-generated method stub
