@@ -7,5 +7,5 @@
 #### 6. Ejercicio Viaje de Trenes - NO RESUELTO
 
 # EJERCICIO TEMA: COLECCIONES
-#### 1. Ejercicio Gestion de biblioteca digital - NO RESUELTO
+#### 1. Ejercicio Gestion de biblioteca digital - RESUELTO
 #### 2. Ejercicio Gestion logistica de viaje - RESUELTO
