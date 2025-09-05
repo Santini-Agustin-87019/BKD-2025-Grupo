@@ -1,3 +1,12 @@
+## Cómo clonar este repositorio
+
+1. Abre una terminal o consola en tu computadora.
+2. Navega a la carpeta donde quieres guardar el proyecto.
+3. Ejecuta el siguiente comando:
+
+   ```bash
+   git clone https://github.com/Santini-Agustin-87019/BKD-2025-Grupo.git
+
 # EJERCICIO TEMA: POO
 #### 1. Ejercicio Tamagochi - NO RESUELTO
 #### 2. Ejercicio Puerto de carga - NO RESUELTO
