@@ -18,3 +18,4 @@
 # EJERCICIO TEMA: COLECCIONES
 #### 1. Ejercicio Gestion de biblioteca digital - RESUELTO
 #### 2. Ejercicio Gestion logistica de viaje - RESUELTO
+#### 3. Ejercicio Marketplace producto digital - 50% COMPLETO - MUY MUY DIFICIL
