@@ -1,0 +1,15 @@
+backend\CursoOnline$CursoOnlineBuilderImpl.class
+backend\ItemNotFoundException.class
+backend\Main.class
+backend\Etiqueta.class
+backend\Ebook.class
+backend\Plataforma.class
+backend\App$AppBuilder.class
+backend\CursoOnline$CursoOnlineBuilder.class
+backend\Ebook$EbookBuilder.class
+backend\ProductoDigital$ProductoDigitalBuilder.class
+backend\App$AppBuilderImpl.class
+backend\CursoOnline.class
+backend\Ebook$EbookBuilderImpl.class
+backend\App.class
+backend\ProductoDigital.class
