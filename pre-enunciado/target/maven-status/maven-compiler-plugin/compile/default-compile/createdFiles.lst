@@ -1,6 +1,8 @@
 ar\edu\utn\isi\boardgames\entities\Category.class
 ar\edu\utn\isi\boardgames\entities\Publisher.class
+ar\edu\utn\isi\boardgames\infrastructure\LocalEntityManagerProvider.class
 ar\edu\utn\isi\boardgames\App.class
+ar\edu\utn\isi\boardgames\infrastructure\DataSourceProvider.class
 ar\edu\utn\isi\boardgames\infrastructure\DbInitializer.class
 ar\edu\utn\isi\boardgames\entities\BoardGame.class
 ar\edu\utn\isi\boardgames\entities\Designer.class
