@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    
+    <!-- Definición de una unidad de persistencia llamada "museo".
+         transaction-type="RESOURCE_LOCAL" indica que manejaremos las transacciones 
+         manualmente y no mediante un contenedor de aplicaciones (JTA). -->
+    <persistence-unit name="empleados" transaction-type="RESOURCE_LOCAL">
+        
+        <!-- Clases que serán mapeadas a tablas de la BD (Cambiarlas por las tablas que vos tenes) -->
+        <class>enunciado.parcial.entities.Empleado</class>
+        <class>enunciado.parcial.entities.Departamento</class>
+        <class>enunciado.parcial.entities.Puesto</class>
+        
+        
+        <properties>
+
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+            <property name="jakarta.persistence.schema-generation.create-source" value="script"/>
+            <property name="jakarta.persistence.schema-generation.create-script-source" value="META-INF/db-schema.sql"/>
+
+
+
+            <!-- Configuración de conexión a la base de datos -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:empleados"/> <!-- Base de datos en memoria -->
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+            
+            <!-- Dialecto de Hibernate: le indica cómo generar SQL específico para H2 -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.H2Dialect"/>
+            
+            <!-- Estrategia para generar esquema de la base de datos:
+                 create-drop → crea las tablas al inicio y las borra al terminar
+                 update → actualiza el esquema sin borrar datos -->
+            <property name="hibernate.hbm2ddl.auto"
+                      value="create-drop"/>
+            
+            <!-- Opciones de logging para depuración -->
+            <property name="hibernate.show_sql" value="true"/>
+            <!-- Muestra las consultas SQL en consola -->
+            
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- Da formato legible al SQL -->
+            
+        </properties>
+    </persistence-unit>
+</persistence>
