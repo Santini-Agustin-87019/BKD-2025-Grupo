@@ -23,8 +23,7 @@ import lombok.*;
     }
 )
 @Data 
-@NoArgsConstructor 
-@AllArgsConstructor
+@NoArgsConstructor
 public class BoardGame {
 
     // ======================== CAMPOS/ATRIBUTOS ========================
@@ -72,9 +71,9 @@ public class BoardGame {
 
     /**
      * Promedio de calificación (valor decimal entre 0 y 10).
-     * precision=3 y scale=2 significa: hasta 3 dígitos en total, 2 después del punto (ej: 9.75)
+     * Para tipos Double, no se especifica precision/scale ya que son punto flotante IEEE 754
      */
-    @Column(name = "AVERAGE_RATING", precision = 3, scale = 2)
+    @Column(name = "AVERAGE_RATING")
     private Double averageRating;
 
     /**
@@ -120,6 +119,25 @@ public class BoardGame {
         foreignKey = @ForeignKey(name = "FK_BG_DESIGNER")
     )
     private Designer designer;
+
+    // ======================== CONSTRUCTORES ========================
+    /**
+     * Constructor sin ID (para crear nuevas instancias)
+     */
+    public BoardGame(String name, Integer yearPublished, int minPlayers, Integer maxPlayers, 
+                     Integer minAge, Double averageRating, Integer usersRating,
+                     Category category, Publisher publisher, Designer designer) {
+        this.name = name;
+        this.yearPublished = yearPublished;
+        this.minPlayers = minPlayers;
+        this.maxPlayers = maxPlayers;
+        this.minAge = minAge;
+        this.averageRating = averageRating;
+        this.usersRating = usersRating;
+        this.category = category;
+        this.publisher = publisher;
+        this.designer = designer;
+    }
 
     // ======================== MÉTODOS ========================
 

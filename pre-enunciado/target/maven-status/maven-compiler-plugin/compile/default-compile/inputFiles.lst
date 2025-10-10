@@ -6,3 +6,9 @@ C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boa
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\infrastructure\DataSourceProvider.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\infrastructure\DbInitializer.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\infrastructure\LocalEntityManagerProvider.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\BoardGameRepository.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\CategoryRepository.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\context\DbContext.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\DesignerRepository.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\PublisherRepository.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\Repository.java

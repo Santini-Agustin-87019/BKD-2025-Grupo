@@ -10,7 +10,6 @@ import lombok.*;
 })
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Publisher {
 
     @Id
@@ -20,4 +19,9 @@ public class Publisher {
 
     @Column(name = "NAME", nullable = false, length = 160)
     private String name;
+
+    // Constructor sin ID (para crear nuevas instancias)
+    public Publisher(String name) {
+        this.name = name;
+    }
 }

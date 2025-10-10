@@ -10,7 +10,6 @@ import lombok.*;
 })
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Category {
 
     @Id
@@ -20,5 +19,10 @@ public class Category {
 
     @Column(name = "NAME", nullable = false, length = 160)
     private String name;
+
+    // Constructor sin ID (para crear nuevas instancias)
+    public Category(String name) {
+        this.name = name;
+    }
 
 }
