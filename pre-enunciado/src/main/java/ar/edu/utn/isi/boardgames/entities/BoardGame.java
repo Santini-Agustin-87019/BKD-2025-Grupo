@@ -32,7 +32,12 @@ public class BoardGame {
      * Clave primaria de la tabla (ID_GAME en el DDL).
      */
     @Id // Marca este campo como la clave primaria.
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @SequenceGenerator(
+        name = "seq_board_game_id",                 // Nombre del generador
+        sequenceName = "SEQ_BOARD_GAME_ID",         // Nombre de la secuencia en la BD
+        allocationSize = 1                          // Incremento de la secuencia (1 para autoincremental)
+    )
+    @GeneratedValue(generator = "seq_board_game_id" , strategy = GenerationType.SEQUENCE) 
     // Usa la estrategia IDENTITY → el ID se genera automáticamente por la BD (autoincremental).
     @Column(name = "ID_GAME") 
     private Integer id;
@@ -88,7 +93,7 @@ public class BoardGame {
      * Relación con la categoría (género) del juego.
      * Muchos juegos pueden pertenecer a una categoría → @ManyToOne.
      */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(
         name = "ID_CATEGORY", // Columna FK en BOARD_GAMES
         nullable = false, // Obligatorio
@@ -100,7 +105,7 @@ public class BoardGame {
      * Relación con la editorial (publisher).
      * Igual lógica que category.
      */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(
         name = "ID_PUBLISHER",
         nullable = false,
@@ -112,7 +117,7 @@ public class BoardGame {
      * Relación con el diseñador del juego.
      * Cada juego tiene un diseñador (obligatorio).
      */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(
         name = "ID_DESIGNER",
         nullable = false,
@@ -140,6 +145,43 @@ public class BoardGame {
     }
 
     // ======================== MÉTODOS ========================
+    
+    // ------------------------------------------------------
+    // Validaciones de rango (sugeridas)
+    // ------------------------------------------------------
+
+    /**
+     * Devuelve true si la cantidad de jugadores está dentro del rango permitido.
+     * - Si MAX_PLAYERS es null, se interpreta como “sin tope superior”.
+     * - Si MIN_PLAYERS es null, no se restringe por mínimo (aunque en tu DDL es obligatorio).
+     */
+    public boolean supportsPlayerCount(int players) {
+        // Si MIN_PLAYERS está definido, debe cumplirse players >= MIN_PLAYERS
+        boolean cumpleMin = (this.minPlayers == 0) || (players >= this.minPlayers);
+
+        // Si MAX_PLAYERS es null => sin tope superior
+        boolean cumpleMax = (this.maxPlayers == null) || (players <= this.maxPlayers);
+
+        return cumpleMin && cumpleMax;
+    }
+
+    /**
+     * Devuelve true si todas las edades del arreglo cumplen la condición de edad mínima.
+     * - Si MIN_AGE es null, se considera que cualquier edad es válida.
+     * - Si el arreglo está vacío o es null, se considera válido.
+     */
+    public boolean isSuitableForAges(int[] ages) {
+        if (ages == null || ages.length == 0) return true; // no hay edades para validar
+        if (this.minAge == null) return true; // sin restricción
+
+        for (int age : ages) {
+            if (age < this.minAge) {
+                return false; // alguna edad menor a la mínima
+            }
+        }
+        return true; // todas las edades cumplen
+    }
+
 
     /**
      * Sobrescribe el método toString() para mostrar información legible del juego.

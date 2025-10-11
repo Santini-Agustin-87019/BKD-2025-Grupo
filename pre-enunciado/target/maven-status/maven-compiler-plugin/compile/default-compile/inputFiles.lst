@@ -1,4 +1,6 @@
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\Acciones.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\App.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\AppContext.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\entities\BoardGame.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\entities\Category.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\entities\Designer.java
@@ -12,3 +14,10 @@ C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boa
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\DesignerRepository.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\PublisherRepository.java
 C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\repositories\Repository.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\services\BoardGameService.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\services\CategoryService.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\services\DesignerService.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\services\PublisherService.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\services\util\NameNormalizer.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\SmokeTestApp.java
+C:\Users\agusn\clases-bkd-2025-V2\pre-enunciado\src\main\java\ar\edu\utn\isi\boardgames\TestCsvApp.java

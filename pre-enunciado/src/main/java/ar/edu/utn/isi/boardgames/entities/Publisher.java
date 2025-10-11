@@ -13,7 +13,8 @@ import lombok.*;
 public class Publisher {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_publisher")
+    @SequenceGenerator(name = "seq_publisher", sequenceName = "SEQ_PUBLISHER_ID", allocationSize = 1)
     @Column(name = "ID_PUBLISHER")
     private Integer id;
 

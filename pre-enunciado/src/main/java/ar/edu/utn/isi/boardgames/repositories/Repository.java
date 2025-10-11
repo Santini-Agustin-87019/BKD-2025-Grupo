@@ -90,13 +90,13 @@ public abstract class Repository<T, K> {
     }
 
     /**
-     * Método genérico para recuperar una entidad por su campo 'nombre'.
-     * - Funciona si la entidad T tiene un atributo llamado 'nombre'.
+     * Método genérico para recuperar una entidad por su campo 'name'.
+     * - Funciona si la entidad T tiene un atributo llamado 'name'.
      * - Devuelve null si no se encuentra ninguna coincidencia.
      */
     public T getByName(String name) {
         // Construimos la query JPQL dinámicamente usando el nombre de la clase T
-        String jpql = "SELECT e FROM " + getEntityClass().getSimpleName() + " e WHERE e.nombre = :name";
+        String jpql = "SELECT e FROM " + getEntityClass().getSimpleName() + " e WHERE e.name = :name";
         
         TypedQuery<T> query = manager.createQuery(jpql, getEntityClass());
 

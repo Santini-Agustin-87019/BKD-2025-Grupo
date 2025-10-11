@@ -13,7 +13,8 @@ import lombok.*;
 public class Designer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_designer")
+    @SequenceGenerator(name = "seq_designer", sequenceName = "SEQ_DESIGNER_ID", allocationSize = 1)
     @Column(name = "ID_DESIGNER")
     private Integer id;
 
