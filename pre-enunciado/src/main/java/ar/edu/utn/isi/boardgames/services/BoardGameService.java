@@ -89,8 +89,7 @@ public class BoardGameService {
     public void bulkInsert(File csvFile) throws IOException {
         
         final int EXPECTED_COLS = 10;
-        final String HEADER_PREFIX = "name;year_published;min_players;max_players;min_age;average_rating;users_rating;category;publisher;designer";
-
+        final String HEADER_PREFIX = "name;category;year_published;designer;min_age;average_rating;users_rating;min_players;max_players;publisher";
         final var lines = Files.readAllLines(csvFile.toPath());
 
         if (lines.isEmpty()) {
@@ -122,18 +121,18 @@ public class BoardGameService {
             }
 
             // Parseo (ya validado)
-            String name = c[0].trim();
-            Integer year = parseIntOrNull(c[1]);
-            int minPlayers = Integer.parseInt(c[2].trim());
-            Integer maxPlayers = parseIntOrNull(c[3]);
-            Integer minAge = parseIntOrNull(c[4]);
-            Double avg = parseDoubleOrNull(c[5]);
-            Integer users = parseIntOrNull(c[6]);
-            String category = c[7].trim();
-            String publisher = c[8].trim();
-            String designer = c[9].trim();
+            String name = c[0].trim();                      // [0] name
+            String category = c[1].trim();                  // [1] category  
+            Integer year = tryParseInt(c[2]);               // [2] year_published
+            String designer = c[3].trim();                  // [3] designer
+            Integer minAge = tryParseInt(c[4]);             // [4] min_age
+            Double avg = tryParseDouble(c[5]);              // [5] average_rating
+            Integer users = tryParseInt(c[6]);              // [6] users_rated
+            int minPlayers = Integer.parseInt(c[7].trim()); // [7] min_players
+            Integer maxPlayers = tryParseInt(c[8]);         // [8] max_players
+            String publisher = c[9].trim(); 
 
-            // Crear
+            // Crear - LLama al metodo create 
             this.create(name, year, minPlayers, maxPlayers, minAge, avg, users,
                         category, publisher, designer);
         }
@@ -148,59 +147,62 @@ public class BoardGameService {
      */
     private String validateRow(String[] c) {
 
-        // 0 name
+        // [0] name (obligatorio)
         if (isBlank(c[0])) return "NAME es obligatorio";
 
-        // 1 yearPublished
-        if (!isBlank(c[1])) {
-            Integer y = tryParseInt(c[1]);
+        // [1] category (obligatorio)
+        if (isBlank(c[1])) return "CATEGORY es obligatoria";
+
+        // [2] year_published (opcional)
+        if (!isBlank(c[2])) {
+            Integer y = tryParseInt(c[2]);  // ✅ CORRECTO: c[2] es year_published
             if (y == null) return "YEAR_PUBLISHED debe ser entero";
             if (y < 1800 || y > 2100) return "YEAR_PUBLISHED fuera de rango [1800..2100]";
         }
 
-        // 2 minPlayers (obligatorio)
-        Integer minP = tryParseInt(c[2]);
-        if (minP == null) return "MIN_PLAYERS es obligatorio (entero)";
-        if (minP < 1) return "MIN_PLAYERS debe ser >= 1";
+        // [3] designer (obligatorio)
+        if (isBlank(c[3])) return "DESIGNER es obligatorio";
 
-        // 3 maxPlayers (opcional)
-        if (!isBlank(c[3])) {
-            Integer maxP = tryParseInt(c[3]);
-            if (maxP == null) return "MAX_PLAYERS debe ser entero o vacío";
-            if (maxP < minP) return "MAX_PLAYERS no puede ser menor que MIN_PLAYERS";
-        }
-
-        // 4 minAge (opcional)
+        // [4] min_age (opcional)
         if (!isBlank(c[4])) {
             Integer ma = tryParseInt(c[4]);
             if (ma == null) return "MIN_AGE debe ser entero o vacío";
             if (ma < 0) return "MIN_AGE debe ser >= 0";
         }
 
-        // 5 averageRating (opcional)
+        // [5] average_rating (opcional)
         if (!isBlank(c[5])) {
             Double ar = tryParseDouble(c[5]);
             if (ar == null) return "AVERAGE_RATING debe ser número o vacío";
             if (ar < 0.0 || ar > 9.99) return "AVERAGE_RATING fuera de rango [0..9.99] (DDL DECIMAL(3,2))";
         }
 
-        // 6 usersRating (opcional)
+        // [6] users_rating (opcional)
         if (!isBlank(c[6])) {
             Integer ur = tryParseInt(c[6]);
             if (ur == null) return "USERS_RATING debe ser entero o vacío";
             if (ur < 0) return "USERS_RATING debe ser >= 0";
         }
 
-        // 7 category, 8 publisher, 9 designer (obligatorios)
-        if (isBlank(c[7])) return "CATEGORY es obligatoria";
-        if (isBlank(c[8])) return "PUBLISHER es obligatorio";
-        if (isBlank(c[9])) return "DESIGNER es obligatorio";
+        // [7] min_players (obligatorio)
+        Integer minP = tryParseInt(c[7]);
+        if (minP == null) return "MIN_PLAYERS es obligatorio (entero)";
+        if (minP < 1) return "MIN_PLAYERS debe ser >= 1";
+
+        // [8] max_players (opcional)
+        if (!isBlank(c[8])) {
+            Integer maxP = tryParseInt(c[8]);
+            if (maxP == null) return "MAX_PLAYERS debe ser entero o vacío";
+            if (maxP < minP) return "MAX_PLAYERS no puede ser menor que MIN_PLAYERS";
+        }
+
+        // [9] publisher (obligatorio)
+        if (isBlank(c[9])) return "PUBLISHER es obligatorio";
 
         return null; // OK
     }
-
     
-    // ======================== MÉTODOS HELPER ========================
+    // Metodos de Validacion auxiliares
     
     /**
      * Verifica si una cadena está vacía o solo contiene espacios
